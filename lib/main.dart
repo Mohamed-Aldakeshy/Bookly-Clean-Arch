@@ -17,7 +17,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
   setupServiceLocator();
-  await Hive.openBox(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox(kNewestBox);
   Bloc.observer = SimpleBlocObserver();
   runApp(const Bookly());
@@ -35,7 +35,7 @@ class Bookly extends StatelessWidget {
             FetchFeauteredBooksUseCase(
               getIt.get<HomeRepoImpl>(),
             ),
-          ),
+          )..fetchFeaturedBooks(),
         ),
         BlocProvider(
           create: (context) => NewestBooksCubit(

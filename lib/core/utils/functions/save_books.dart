@@ -2,6 +2,6 @@ import 'package:bookly_app_clean_arch/Features/home/domain/entities/book_entity.
 import 'package:hive/hive.dart';
 
 void saveBoxData(List<BookEntity> books, String boxName) {
-  var box = Hive.box(boxName);
+  var box = Hive.box<BookEntity>(boxName);
   box.addAll(books);
 }
